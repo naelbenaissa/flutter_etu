@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_etats/views/home/home.dart';
 
-import 'views/home/home.dart';
-
-// Reference :
-  // Navigation and routing : https://docs.flutter.dev/ui/navigation
-  // Tabs
-  // Google Fonts
-  // Alert
-  // SnackBar
-  // floatingActionButton
-  // BottomNavigationBar
-
 void main() {
   runApp(const MyApp());
 }
@@ -23,15 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Navigation Basic',
+      title: 'Transmettre des données',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: Home(),
     );
   }
 }
-
-
-
