@@ -8,12 +8,11 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Découvres les animaux !"),
-        backgroundColor: Colors.pink,
+        title: const Text("Découvres les animaux"),
+        backgroundColor: Colors.purple,
         foregroundColor: Colors.white,
       ),
       body: const GridSection(),
     );
   }
 }
-

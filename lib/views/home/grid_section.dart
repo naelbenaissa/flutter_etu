@@ -12,7 +12,8 @@ class GridSection extends StatefulWidget {
 }
 
 class _GridSectionState extends State<GridSection> {
-  /// Attributs
+
+  /// Propriétés
   late Future<List<Animal>> futureAnimals;
 
   /// Méthodes
@@ -22,31 +23,32 @@ class _GridSectionState extends State<GridSection> {
     futureAnimals = Data.fetchAnimals();
   }
 
-  ///
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<List<Animal>>(
         future: futureAnimals,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasError) {
-            return const Text('Une erreur est survenue !');
+            return const Center(
+              child: Text('Une erreur est survenue !'),
+            );
           } else if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {
             final animals = snapshot.data!;
 
-            /// Création d'une liste de tuiles
-            List<Widget> tilesAnimals = [];
-            for (Animal animal in animals) {
-              tilesAnimals.add(appendTile(animal));
-            }
-
-            /// Création de la grille
-            return GridView.count(
-              primary: false,
-              padding: const EdgeInsets.all(20),
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              crossAxisCount: 2,
-              children: tilesAnimals,
+            /// Construction de la grille
+            return Padding(
+              padding: const EdgeInsets.all(25),
+              child: GridView.builder(
+                  itemCount: animals.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, /// nombre items par ligne de la grille
+                      crossAxisSpacing: 25, /// Espace entre les items sur une ligne
+                      mainAxisSpacing: 25 /// Espace entre les lignes de la grille
+                      ),
+                  itemBuilder: (BuildContext context, int index) {
+                    final animal = animals[index];
+                    return createTile(animal);
+                  }),
             );
           } else {
             return const SizedBox(
@@ -61,16 +63,12 @@ class _GridSectionState extends State<GridSection> {
         });
   }
 
-  ///
-  GestureDetector appendTile(Animal animal) {
+  /// Méthode permettant de créer chaque tuile animal avec Widget "Détecteur de gestes"
+  GestureDetector createTile(Animal animal) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DetailAnimal(idAnimal: animal.id),
-          ),
-        );
+            context, MaterialPageRoute(builder: (context) => DetailAnimal(idAnimal: animal.id)));
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
@@ -93,4 +91,4 @@ class _GridSectionState extends State<GridSection> {
       ),
     );
   }
-}
+} // CLASS

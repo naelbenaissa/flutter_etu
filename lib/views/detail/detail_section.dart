@@ -60,9 +60,9 @@ class _DetailSectionState extends State<DetailSection> {
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                   Text(animal.description,
                       style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 15)),
-                  Padding(
-                      padding: EdgeInsets.symmetric(vertical: 15)
-                  )
+                  const Padding(
+                      padding: EdgeInsets.only(top: 30),
+                  ),
                 ],
               ),
             );
