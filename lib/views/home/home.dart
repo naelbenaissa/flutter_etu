@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import '../../data/data.dart';
-import '../../models/animal.dart';
+import '../../widgets/animal_section.dart';
 
 class Home extends StatelessWidget {
-  Home(this._titre, {super.key});
+  final String titre;
 
-  final String _titre;
-  final List<Animal> animals = Data.animals();
+  const Home(this.titre, {super.key});
 
   @override
   Widget build(BuildContext context) {
-
     var sizeContext = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          _titre,
+          titre,
         ),
         backgroundColor: Colors.purple,
         foregroundColor: Colors.white,
@@ -32,33 +29,10 @@ class Home extends StatelessWidget {
               width: sizeContext.width,
             ),
           ),
-
-          SizedBox(
-            height: 200,
-            child: ListView.separated(
-                padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                scrollDirection: Axis.horizontal,
-                itemCount: animals.length,
-                itemBuilder: (
-                        (BuildContext context, int index) => GestureDetector(
-                      onTap: () => print('animal : ${animals[index].getNom}, index ; $index'),
-                      child: Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.asset('lib/assets/images/${animals[index].getImage}')),
-                        ),
-                      ),
-                    )
-                ),
-                separatorBuilder: (
-                        (BuildContext context, int index) => const SizedBox(width: 10,)
-                )
+          const Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: AnimalSection(),
             ),
           ),
         ],
