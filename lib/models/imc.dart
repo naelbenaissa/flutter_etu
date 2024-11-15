@@ -1,25 +1,24 @@
 class Imc {
-  final int id;
-  final DateTime date;
+  final int? id;
+  final double imc;
+  final String date;
 
   Imc({
-    required this.id,
+    this.id,
+    required this.imc,
     required this.date,
   });
 
-  // Convert a Dog into a Map. The keys must correspond to the names of the
-  // columns in the database.
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'date': date.toIso8601String(),
+      'imc': imc,
+      'date': date,
     };
   }
 
-  // Implement toString to make it easier to see information about
-  // each dog when using the print statement.
   @override
   String toString() {
-    return 'Imc{id: $id, date: $date}';
+    return 'Imc{id: $id, imc: $imc, date: $date}';
   }
 }

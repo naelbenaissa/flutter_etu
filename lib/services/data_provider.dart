@@ -33,7 +33,7 @@ class DataProvider {
       onCreate: (db, version) {
         // Run the CREATE TABLE statement on the database.
         return db.execute(
-          'CREATE TABLE imc(id INTEGER PRIMARY KEY, date TEXT)',
+          'CREATE TABLE imc(id INTEGER PRIMARY KEY AUTOINCREMENT, imc DOUBLE, date TEXT)',
         );
       },
       // Set the version. This executes the onCreate function and provides a
@@ -71,9 +71,10 @@ class DataProvider {
     return [
       for (final {
       'id': id as int,
-      'date': date as DateTime,
+      'imc': imc as double,
+      'date': date as String,
       } in imcMaps)
-        Imc(id: id, date: date),
+        Imc(id: id, imc: imc, date: date),
     ];
   }
 
