@@ -162,7 +162,8 @@ class _HomeState extends State<Home> {
             ),
             const SizedBox(height: 20),
             SingleChildScrollView(
-              child: Expanded(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4, // Taille fixe ou ajustée
                 child: FutureBuilder<List<Imc>>(
                   future: _imcList,
                   builder: (context, snapshot) {
@@ -170,8 +171,8 @@ class _HomeState extends State<Home> {
                       return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
                       return const Center(
-                          child:
-                              Text('Erreur lors du chargement des données.'));
+                        child: Text('Erreur lors du chargement des données.'),
+                      );
                     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                       return const Center(child: Text('Aucun IMC enregistré.'));
                     }
@@ -181,8 +182,8 @@ class _HomeState extends State<Home> {
                       itemCount: imcList.length,
                       itemBuilder: (context, index) {
                         final imc = imcList[index];
-                        final dateFormatted = DateFormat('dd MM yyyy').format(
-                            DateTime.parse(imc.date));
+                        final dateFormatted =
+                        DateFormat('dd MM yyyy').format(DateTime.parse(imc.date));
                         return ListTile(
                           title: Text('IMC : ${imc.imc.toStringAsFixed(2)}'),
                           subtitle: Text('Date : $dateFormatted'),
@@ -192,7 +193,7 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
