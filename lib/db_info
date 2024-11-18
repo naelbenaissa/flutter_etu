@@ -1,0 +1,8 @@
+# Nom de la base : todo.db
+
+# Nom de la table : taches
+
+# champs :
+    + id INTEGER PRIMARY KEY
+    + contenu TEXT NOT NULL
+    + statut INTEGER NOT NULL
