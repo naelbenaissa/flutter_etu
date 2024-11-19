@@ -3,10 +3,6 @@ import 'package:flutter_imc/models/imc.dart';
 import '../../services/data_provider.dart';
 import 'package:intl/intl.dart';
 
-Future<void> main() async {
-  runApp(const Home());
-}
-
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -75,7 +71,8 @@ class _HomeState extends State<Home> {
             children: [
               Text(
                 'Votre IMC est de ${imc.toStringAsFixed(2)}\n($categorie)',
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
@@ -163,7 +160,8 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 20),
             SingleChildScrollView(
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4, // Taille fixe ou ajustée
+                height: MediaQuery.of(context).size.height *
+                    0.4,
                 child: FutureBuilder<List<Imc>>(
                   future: _imcList,
                   builder: (context, snapshot) {
@@ -182,8 +180,8 @@ class _HomeState extends State<Home> {
                       itemCount: imcList.length,
                       itemBuilder: (context, index) {
                         final imc = imcList[index];
-                        final dateFormatted =
-                        DateFormat('dd MM yyyy').format(DateTime.parse(imc.date));
+                        final dateFormatted = DateFormat('dd MM yyyy')
+                            .format(DateTime.parse(imc.date));
                         return ListTile(
                           title: Text('IMC : ${imc.imc.toStringAsFixed(2)}'),
                           subtitle: Text('Date : $dateFormatted'),
