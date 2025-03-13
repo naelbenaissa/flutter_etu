@@ -17,7 +17,7 @@ Each branch of the repository corresponds to a theme or course module. To switch
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/nbena69/flutter_etu.git
+   git clone https://github.com/naelbenaissa/flutter_etu.git
    cd flutter_etu
    ```
 2. **Switch between branches**:
